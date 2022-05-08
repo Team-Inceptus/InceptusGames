@@ -9,11 +9,13 @@ import org.jetbrains.annotations.Nullable;
  * Core FloorIsLava Game Manager */
 public interface FloorIsLava {
 
+    /*
     @NotNull
+
     default BoundingBox getBox() {
         return new BoundingBox(getFirstCorner().getX(), getFirstCorner().getY(), getFirstCorner().getZ(), getSecondCorner().getX(), getSecondCorner().getY(), getSecondCorner().getZ());
     }
-
+    */
     /**
      *
      * @param loc
