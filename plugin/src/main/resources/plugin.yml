@@ -1,0 +1,5 @@
+name: ${project.name}
+main: ${plugin.main}
+version: ${plugin.version}
+author: Team Inceptus
+load: STARTUP

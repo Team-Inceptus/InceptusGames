@@ -12,6 +12,7 @@
     </properties>
 
     <artifactId>plugin</artifactId>
+    <name>InceptusGames</name>
 
     <build>
         <plugins>
@@ -39,23 +40,27 @@
     </repositories>
 
     <dependencies>
+        <!-- Modules -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>floorislava</artifactId>
             <version>${project.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>gamesutils</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- Other Dependencies -->
+       <dependency>
             <groupId>com.github.Revxrsal.Lamp</groupId>
             <artifactId>bukkit</artifactId>
             <version>${lamp.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.github.Revxrsal.Lamp</groupId>
             <artifactId>common</artifactId>
             <version>${lamp.version}</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
