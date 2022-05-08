@@ -7,19 +7,27 @@
     <packaging>pom</packaging>
 
     <properties>
-        <spigot.version>1.18.2-R0.1-SNAPSHOT</spigot.version>
+        <!-- Global Plugin Properties -->
+        <plugin.version>1.0.0</plugin.version>
+        <plugin.main>us.teaminceptus.games.InceptusGames</plugin.main>
+        <plugin.author>Team Inceptus</plugin.author>
+        <plugin.apiversion>1.16.5</plugin.apiversion>
+        <!-- Other -->
+        <spigot.version>${plugin.apiversion}-R0.1-SNAPSHOT</spigot.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
+    <name>InceptusGames-Parent</name>
+
     <build>
         <finalName>${project.name}-${project.version}</finalName>
-        <sourceDirectory>src/main/java/</sourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
-                <directory>src/main/resources/</directory>
+                <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
                     <include>*.properties</include>
@@ -56,6 +64,7 @@
         <module>basewars</module>
         <module>skywars</module>
         <module>premium</module>
+        <module>gamesutils</module>
     </modules>
 
 </project>
