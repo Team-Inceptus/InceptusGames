@@ -74,7 +74,7 @@ public interface Bedwars {
         ;
 
         private static List<Color> TWO() {
-            return Arrays.asList(Color.RED, Color.BLUE)
+            return Arrays.asList(Color.RED, Color.BLUE);
         }
 
         private static List<Color> FOUR() {

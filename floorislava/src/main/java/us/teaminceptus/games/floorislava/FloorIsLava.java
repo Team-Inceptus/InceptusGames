@@ -1,7 +1,6 @@
 package us.teaminceptus.games.floorislava;
 
 import org.bukkit.Location;
-import org.bukkit.util.BoundingBox;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,9 +16,9 @@ public interface FloorIsLava {
     }
     */
     /**
-     *
      * @param loc
      * @throws IllegalStateException
+     * @return
      */
     void setFirstCorner(@NotNull Location loc) throws IllegalStateException;
 
@@ -52,19 +51,21 @@ public interface FloorIsLava {
     double getRate();
 
     /**
-     * Gets the first corner.
+     * Gets the first corner of this FloorIsLava.
      * @return Location of first corner
      */
     @NotNull
     Location getFirstCorner();
 
     /**
-     * Gets the second corner.
+     * Gets the second corner of this FloorIsLava.
      * @return Location of second corner
      */
     @NotNull
     Location getSecondCorner();
 
+    void startFloorIsLava();
 
+    void endFloorIsLava();
 
 }
