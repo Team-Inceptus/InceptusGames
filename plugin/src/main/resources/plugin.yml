@@ -3,7 +3,3 @@ main: ${plugin.main}
 version: ${plugin.version}
 author: Team Inceptus
 load: STARTUP
-commands:
-  setlarena:
-    description: Sets the arena for the floor is lava minigame
-    usage: /<command>
