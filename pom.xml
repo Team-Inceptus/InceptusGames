@@ -56,7 +56,7 @@
             <version>23.0.0</version>
         </dependency>
     </dependencies>
-
+    
     <modules>
         <module>plugin</module>
         <module>bedwars</module>
