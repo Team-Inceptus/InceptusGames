@@ -8,5 +8,6 @@
     </parent>
 
     <artifactId>gamesutils</artifactId>
+    <name>InceptusGames-Utils</name>
 
 </project>
