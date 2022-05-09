@@ -1,71 +1,62 @@
 package us.teaminceptus.games.floorislava;
 
 import org.bukkit.Location;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
+import us.teaminceptus.games.util.GameManager;
 
 /**
- * Core FloorIsLava Game Manager */
-public interface FloorIsLava {
-
-    /*
-    @NotNull
-
-    default BoundingBox getBox() {
-        return new BoundingBox(getFirstCorner().getX(), getFirstCorner().getY(), getFirstCorner().getZ(), getSecondCorner().getX(), getSecondCorner().getY(), getSecondCorner().getZ());
-    }
-    */
-    /**
-     * @param loc
-     * @throws IllegalStateException
-     * @return
-     */
-    void setFirstCorner(@NotNull Location loc) throws IllegalStateException;
+ * Core FloorIsLava Game Manager 
+*/
+public interface FloorIsLava extends GameManager {
 
     /**
-     * Sets the second corner.
-     * @param loc Location to set
-     * @throws IllegalStateException if game has already started
+     * Tick Rate on Easy Mode (140 ticks / 7 seconds)
      */
-    void setSecondCorner(@NotNull Location loc) throws IllegalStateException;
-
-    void setSpawn(@NotNull Location loc) throws IllegalStateException;
-
-    void setFinish(@NotNull Location loc) throws IllegalStateException;
-
-    void addCheckpoint(@NotNull Location loc) throws IllegalStateException;
-
-    void removeCheckpoint(@NotNull Location loc) throws IllegalStateException;
-
-    void setRate(double rate);
-
-    @Nullable
-    Location getSpawn();
-
-    @Nullable
-    Location getFinish();
-
-    @Nullable
-    Location getCheckpoint(int index);
-
-    double getRate();
+    long EASY_TICKRATE = 140;
 
     /**
-     * Gets the first corner of this FloorIsLava.
-     * @return Location of first corner
+     * Tick Rate on Normal Mode (80 ticks / 4 seconds)
      */
-    @NotNull
+    long NORMAL_TICKRATE = 80;
+
+    /**
+     * Tick Rate on Hard Mode (40 ticks / 2 seconds)
+     */
+    long HARD_TICKRATE = 40;
+
+    /**
+     * Tick Rate on Demon Mode (10 ticks / 0.5 seconds)
+     */
+    long DEMON_TICKRATE = 10;
+
+    /**
+     * Fetches the First Corner.
+     * @return First Corner
+     */
     Location getFirstCorner();
 
     /**
-     * Gets the second corner of this FloorIsLava.
-     * @return Location of second corner
+     * Fetches the Second Corner.
+     * @return Second Corner
      */
-    @NotNull
     Location getSecondCorner();
+    
+    /**
+     * Fetches the start height's Y value.
+     * @return Start Height
+     */
+    int getStartHeight();
 
-    void startFloorIsLava();
+    /**
+     * Fetches the stop height's Y value.
+     * @return Stop Height
+     */
+    int getStopHeight();
 
-    void endFloorIsLava();
+    /**
+     * Gets the current tick rate that Lava is rising.
+     * @return Tick Rate
+     */
+    long getTickRate();
 
 }
