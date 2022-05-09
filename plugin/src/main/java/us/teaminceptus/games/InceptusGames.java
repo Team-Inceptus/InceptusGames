@@ -26,6 +26,7 @@ public final class InceptusGames extends JavaPlugin implements FloorIsLava, List
 
     // Events
 
+    /*
     public void setBlocks(PlayerInteractEvent e) {
         if ((e.getAction() == Action.RIGHT_CLICK_BLOCK) || (e.getAction() == Action.LEFT_CLICK_BLOCK)) {
             Player p = e.getPlayer();
@@ -53,17 +54,23 @@ public final class InceptusGames extends JavaPlugin implements FloorIsLava, List
 
 
                 }
+
+
             }
 
         }
 
 
-    }
+    } */
+
+
 
     // Plugin Logic
 
     public void onEnable() {
         BukkitCommandHandler handler = BukkitCommandHandler.create(this);
+
+        this.getCommand("setlarena").setExecutor(new Commands(this));
 
         handler.register(this);
         handler.registerBrigadier();
