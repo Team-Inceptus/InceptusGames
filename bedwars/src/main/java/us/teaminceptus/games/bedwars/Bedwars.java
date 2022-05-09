@@ -1,14 +1,14 @@
 package us.teaminceptus.games.bedwars;
 
-import org.bukkit.Color;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import us.teaminceptus.games.bedwars.teams.BedwarsTeam;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import org.bukkit.Color;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import us.teaminceptus.games.bedwars.teams.BedwarsTeam;
 
 /**
  * Core Bedwras Game Manager
@@ -16,11 +16,11 @@ import java.util.Map;
 public interface Bedwars {
 
     @NotNull
-    Type getType();
+    Type getBedwarsType();
 
-    void setType(@NotNull Type t);
+    void setBedwarsType(@NotNull Type t);
 
-    @Nullable Map<Color, BedwarsTeam> getTeams();
+    @Nullable Map<Color, BedwarsTeam> getBedwarsTeams();
 
     /**
      * Represents a Bedwars Game Type
