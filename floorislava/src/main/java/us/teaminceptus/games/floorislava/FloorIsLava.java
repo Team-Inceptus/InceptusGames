@@ -1,6 +1,15 @@
 package us.teaminceptus.games.floorislava;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.Nullable;
 
 import us.teaminceptus.games.util.GameManager;
 
@@ -9,25 +18,60 @@ import us.teaminceptus.games.util.GameManager;
 */
 public interface FloorIsLava extends GameManager {
 
-    /**
-     * Tick Rate on Easy Mode (140 ticks / 7 seconds)
-     */
-    long EASY_TICKRATE = 140;
+    // File Manager & Other
 
-    /**
-     * Tick Rate on Normal Mode (80 ticks / 4 seconds)
-     */
-    long NORMAL_TICKRATE = 80;
+    static File getFile() {
+        Plugin p = Bukkit.getPluginManager().getPlugin("InceptusGames");
 
-    /**
-     * Tick Rate on Hard Mode (40 ticks / 2 seconds)
-     */
-    long HARD_TICKRATE = 40;
+        return new File(p.getDataFolder(), "floorislava.yml");
+    }
 
-    /**
-     * Tick Rate on Demon Mode (10 ticks / 0.5 seconds)
-     */
-    long DEMON_TICKRATE = 10;
+    static FileConfiguration loadConfiguration() {
+        if (!(getFile().exists())) try { getFile().createNewFile(); } catch (IOException e) { e.printStackTrace(); }
+
+        FileConfiguration config = YamlConfiguration.loadConfiguration(getFile());
+
+        if (!(config.isConfigurationSection("setup"))) config.createSection("setup");
+        ConfigurationSection setup = config.getConfigurationSection("setup");
+
+        if (!(GameDifficulty.isGameDifficulty(config.getString("difficulty")))) setup.set("difficulty", "NORMAL");
+
+        try {
+            config.save(getFile());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return config; 
+    }
+
+    enum GameDifficulty {
+
+        EASY(140),
+        NORMAL(80),
+        HARD(40),
+        DEMON(10)
+        ;
+
+        private final long tickRate;
+
+        private GameDifficulty(long tickRate) {
+            this.tickRate = tickRate;
+        }
+
+        public long getTickRate() {
+            return this.tickRate;
+        }
+
+        public static boolean isGameDifficulty(@Nullable String input) {
+            if (input == null) return false;
+
+            for (GameDifficulty d : values()) if (d.name().equalsIgnoreCase(input)) return true;
+            return false;
+        }
+    }
+
+    // Implementation
 
     /**
      * Fetches the First Corner.
@@ -54,9 +98,9 @@ public interface FloorIsLava extends GameManager {
     int getStopHeight();
 
     /**
-     * Gets the current tick rate that Lava is rising.
-     * @return Tick Rate
+     * Gets the Difficulty for this FloorIsLava Game.
+     * @return Game Difficulty
      */
-    long getTickRate();
+    GameDifficulty getDifficulty();
 
 }

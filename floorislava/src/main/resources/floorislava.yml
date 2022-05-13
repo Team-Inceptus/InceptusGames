@@ -1,5 +1,19 @@
 # 
 # Floor is Lava Configuration
 #
-# Created by 
-#
+# Created by ${plugin.author}
+
+# Setup Section
+setup:
+  
+  # Difficulty for lava to rise
+  # Case Insensitive (caps recommended)
+  #
+  # Difficulties (Easiest to Hardest):
+  # - Easy
+  # - Normal
+  # - Hard
+  # - Demon
+  difficutlty: NORMAL
+
+  
