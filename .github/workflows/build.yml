@@ -21,6 +21,7 @@ jobs:
         java-version: '17'
         
     - name: Build Project
-      run: |
-        mvn package clean install
-    
+      run: mvn package clean install
+
+    - name: Upload JavaDocs
+      run: bash javadoc.sh
