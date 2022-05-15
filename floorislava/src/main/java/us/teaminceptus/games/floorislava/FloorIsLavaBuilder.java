@@ -57,9 +57,9 @@ public final class FloorIsLavaBuilder implements GameBuilder {
         if (!(setup.isLocation("corner2"))) throw new IllegalArgumentException("Missing Corner #2");
 
         return new GameInstance(participants, GameDifficulty.valueOf(diff.toUpperCase()), setup.getLocation("corner1"), setup.getLocation("corner2"));
-    };
+    }
 
-    static class GameInstance implements FloorIsLava {
+    static final class GameInstance implements FloorIsLava {
 
         private final Plugin plugin;
         private final FileConfiguration config;
@@ -92,8 +92,8 @@ public final class FloorIsLavaBuilder implements GameBuilder {
             this.remaining.addAll(participants);
             this.messages = Language.getCurrentLanguage("floorislava");
             this.running = true;
-            this.startHeight = c1.getBlockY() > c2.getBlockY() ? c2.getBlockY() : c1.getBlockY();
-            this.finishHeight = c1.getBlockY() > c2.getBlockY() ? c1.getBlockY() : c2.getBlockY();
+            this.startHeight = Math.min(c1.getBlockY(), c2.getBlockY());
+            this.finishHeight = Math.max(c1.getBlockY(), c2.getBlockY());
             this.originalArea = new WorldBox(c1, c2);
 
             RUNNABLE.runTask(plugin);
@@ -105,7 +105,7 @@ public final class FloorIsLavaBuilder implements GameBuilder {
                 for (UUID p : remaining) Bukkit.getPlayer(p).sendTitle(getProp(messages, "start", ChatColor.GREEN + "Start!"), "", 10, 70, 20);
 
                 new BukkitRunnable() {
-                    int currentY = startHeight;
+                    int currentY = GameInstance.this.startHeight;
 
                     public void run() {
                         if (!(running)) cancel();
@@ -137,16 +137,19 @@ public final class FloorIsLavaBuilder implements GameBuilder {
                 remaining.remove(p.getUniqueId());
 
                 p.teleport(config.getLocation("out", p.getBedSpawnLocation()));
+                checkParticipants();
             }
-            
-
         }
 
         public void checkParticipants() {
             if (remaining.size() < 1) {
-                for (UUID uid : participants) Bukkit.getPlayer(uid).sendTitle(getProp(messages, "all_out", ChatColor.RED + "Everybody is out! Cancelling..."), "", 10, 70, 20);
+                sendOutTitle();
                 stop();
             }
+        }
+
+        private void sendOutTitle() {
+            for (UUID uid : participants) Bukkit.getPlayer(uid).sendTitle(getProp(messages, "all_out", ChatColor.RED + "Everybody is out! Cancelling..."), "", 10, 70, 20);
         }
 
         @Override
