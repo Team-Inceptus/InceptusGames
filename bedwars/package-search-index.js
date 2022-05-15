@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"us.teaminceptus.games.bedwars"},{"l":"us.teaminceptus.games.bedwars.teams"}];updateSearchResults();

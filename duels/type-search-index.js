@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"us.teaminceptus.games.duels","l":"Duels"},{"p":"us.teaminceptus.games.duels","l":"Duels.Type"}];updateSearchResults();

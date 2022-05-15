@@ -1,8 +1,0 @@
-#
-# Main InceptusGames Configuration File
-# Created by ${plugin.author}
-#
-# Version ${plugin.version}
-
-# Language used for Minigames, Messages, etc
-language: en
