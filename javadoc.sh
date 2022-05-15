@@ -43,7 +43,7 @@ done
 
 echo "Moving Docs (1)..."
 
-git checkout origin/gh-pages
+git checkout gh-pages
 
 for dir in ./*
 do
@@ -60,5 +60,7 @@ cp -Rfv ./docs/* ./
 rm -rf ./docs
 
 git add .
+git branch -D gh-pages
+git branch -m gh-pages
 git commit -m "Update InceptusGames JavaDocs"
 git push -f origin gh-pages
